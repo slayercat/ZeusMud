@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wpf.network;
 
 namespace zeus_mud.game.data
 {
@@ -42,6 +44,8 @@ namespace zeus_mud.game.data
             wb.ObjectForScripting = this;
             wb.Navigate(pageurl);
             wb.AllowNavigation = false;
+
+            OpcodesHandler.registerHandler(Opcodes.S2CChatMessageNotify, this.chatMessageCallback);
         }
 
 
@@ -107,18 +111,26 @@ namespace zeus_mud.game.data
 
         public void postChat(MessageChannel channel,string sendto, string content)
         {
-            bool success=true;
-
             // 向服务器请求的代码
-
-            if (success)
+            if (channel == MessageChannel.ChannelPrivate ||
+                channel == MessageChannel.ChannelWorld ||
+                channel == MessageChannel.ChannelGuild)
             {
-                writeLine(channel, "你"/*PlayerProfile.nickname*/, PlayerProfile.guid, content);
+                Protocol.C2SChatMessageReq chatRequest = new Protocol.C2SChatMessageReq();
+                chatRequest.chat_type = (int)channel;
+                if (channel == MessageChannel.ChannelPrivate)
+                {
+                    chatRequest.chat_target_guid = 439715978;   // > Debug
+                }
+
+                chatRequest.chat_content = Encoding.Default.GetBytes(content);
+                NetworkEvent.sendPacket<Protocol.C2SChatMessageReq>(chatRequest);
             }
             else
             {
                 writeLine(MessageChannel.ChannelSystem, "错误", SystemUid, "信息“" + content + "”发送失败！" );
             }
+
         }
 
         public void writeLine(MessageChannel channel, string uname, UInt64 from_uid, string content)
@@ -141,6 +153,29 @@ namespace zeus_mud.game.data
         public void console_log(string data)
         {
             Console.WriteLine(data);
+        }
+
+        private void chatMessageCallback(MemoryStream stream)
+        {
+            Protocol.S2CChatMessageNotify notify = NetworkEvent.parseMessage<Protocol.S2CChatMessageNotify>(stream);
+
+            //如果是私聊
+            if (notify.chat_type == (int)MessageChannel.ChannelPrivate)
+            {
+                writeLine(
+                    (MessageChannel)notify.chat_type,
+                    Encoding.Default.GetString(notify.chat_sender_nickname),
+                    notify.chat_sender_guid,
+                    Encoding.Default.GetString(notify.chat_content));
+            }
+            else
+            {
+                writeLine(
+                    (MessageChannel)notify.chat_type,
+                    Encoding.UTF8.GetString(notify.chat_sender_nickname),
+                    notify.chat_sender_guid,
+                    Encoding.Default.GetString(notify.chat_content));
+            }
         }
     }
 }
