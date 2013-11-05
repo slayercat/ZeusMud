@@ -109,6 +109,11 @@
     <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
       <HintPath>..\..\..\lib\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
     </Reference>
+    <Reference Include="Xilium.CefGlue, Version=3.0.0.0, Culture=neutral, PublicKeyToken=6235298024de30d5" />
+    <Reference Include="Xilium.CefGlue.WindowsForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6235298024de30d5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Xilium.CefGlue.WindowsForms.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

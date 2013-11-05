@@ -29,13 +29,13 @@ namespace zeus_mud.dialog
                 MessageBox.Show(this, "聊天模块加载错误，请检查客户端是否完整", "错误", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
-            chat = new ChatControl(ref wbWorldChat, "file://" + page_path);
+            //chat = new ChatControl(ref wbWorldChat, "file://" + page_path);
             // wbWorldChat.IsWebBrowserContextMenuEnabled = true;
         }
 
         private void btnDebugRefresh_Click(object sender, EventArgs e)
         {
-            wbWorldChat.Refresh(WebBrowserRefreshOption.Completely);
+            //wbWorldChat.Refresh(WebBrowserRefreshOption.Completely);
         }
     }
 }

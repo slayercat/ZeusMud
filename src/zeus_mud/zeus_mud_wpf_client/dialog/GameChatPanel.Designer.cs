@@ -28,32 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.wbWorldChat = new System.Windows.Forms.WebBrowser();
             this.btnDebugRefresh = new System.Windows.Forms.Button();
+            this.cefWebBrowser1 = new Xilium.CefGlue.WindowsForms.CefWebBrowser();
             this.SuspendLayout();
-            // 
-            // wbWorldChat
-            // 
-            this.wbWorldChat.AllowNavigation = false;
-            this.wbWorldChat.AllowWebBrowserDrop = false;
-            this.wbWorldChat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.wbWorldChat.IsWebBrowserContextMenuEnabled = false;
-            this.wbWorldChat.Location = new System.Drawing.Point(0, 0);
-            this.wbWorldChat.Margin = new System.Windows.Forms.Padding(0);
-            this.wbWorldChat.MinimumSize = new System.Drawing.Size(20, 20);
-            this.wbWorldChat.Name = "wbWorldChat";
-            this.wbWorldChat.ScriptErrorsSuppressed = true;
-            this.wbWorldChat.ScrollBarsEnabled = false;
-            this.wbWorldChat.Size = new System.Drawing.Size(171, 85);
-            this.wbWorldChat.TabIndex = 3;
-            this.wbWorldChat.WebBrowserShortcutsEnabled = false;
             // 
             // btnDebugRefresh
             // 
             this.btnDebugRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDebugRefresh.Location = new System.Drawing.Point(96, 3);
+            this.btnDebugRefresh.Location = new System.Drawing.Point(195, 3);
             this.btnDebugRefresh.Name = "btnDebugRefresh";
             this.btnDebugRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnDebugRefresh.TabIndex = 4;
@@ -61,17 +43,26 @@
             this.btnDebugRefresh.UseVisualStyleBackColor = true;
             this.btnDebugRefresh.Click += new System.EventHandler(this.btnDebugRefresh_Click);
             // 
+            // cefWebBrowser1
+            // 
+            this.cefWebBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cefWebBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.cefWebBrowser1.Name = "cefWebBrowser1";
+            this.cefWebBrowser1.Size = new System.Drawing.Size(270, 92);
+            this.cefWebBrowser1.TabIndex = 5;
+            this.cefWebBrowser1.Text = "cefWebBrowser1";
+            // 
             // GameChatPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.btnDebugRefresh);
-            this.Controls.Add(this.wbWorldChat);
+            this.Controls.Add(this.cefWebBrowser1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "GameChatPanel";
-            this.Size = new System.Drawing.Size(200, 100);
+            this.Size = new System.Drawing.Size(299, 106);
             this.Load += new System.EventHandler(this.GameChatPanel_Load);
             this.ResumeLayout(false);
 
@@ -79,8 +70,8 @@
 
         #endregion
 
-        private System.Windows.Forms.WebBrowser wbWorldChat;
         private System.Windows.Forms.Button btnDebugRefresh;
+        private Xilium.CefGlue.WindowsForms.CefWebBrowser cefWebBrowser1;
 
     }
 }

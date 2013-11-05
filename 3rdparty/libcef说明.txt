@@ -1,0 +1,29 @@
+使用说明
+
+
+当前项目有用的部分：
+    CefGlue -> C到C#中间层
+    CefGlue.WindowsForms -> C#窗口控件
+    CefGlue.Interop.Gen -> API生成器
+
+================================
+注意：
+
+CefGlue默认的libcef版本不明，下载了最新的
+
+下载后的libcef压缩包中有用的部分：
+   include
+     扔进 API生成器 覆盖原来的，然后运行 gen-cef3.cmd （需要python27安装在默认路径）
+     这会更新 中间层 项目里的一些文件。
+   Resource
+     语言文件、开发人员工具，至少要有个en-us的语言包放在那，否则无法运行
+   Release和Debug
+     DLL文件
+
+
+* DLL和资源等都已经配置好，版本都对。但是新版本的libcef中有几个新加的事件，这些事件目前被空置。不影响浏览器的使用，但是这些事件就不能监听了。
+
+* DLL之类占用空间过大，已经把Release版本的所有需要的文件编译好放在output文件夹里。如果需要自己编译新的，要先“解压 libcef.7z 到当前目录”再生成。
+* libcef.7z从 github找branch“webkit”，下载回来。
+
+* 编译的时候不能选择“Any CPU”，整个依赖链中的每一项都要互相匹配

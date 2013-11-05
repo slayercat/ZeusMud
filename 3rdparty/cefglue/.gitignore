@@ -1,0 +1,9 @@
+# project's output
+bin
+obj
+*/obj
+*/bin
+
+# visual studio
+*.user
+*.suo
